@@ -1,21 +1,141 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000;
+}
+
 #board {
   display: flex;
+  gap: 16px;
+  padding: 24px;
+  position: relative;
   flex-direction: row;
-  gap: 2px;
+  background-image: url('./assets/wood.jpg');
+  display: inline-flex;
+  box-shadow: 0 0 4px #000000 inset;
+
 }
 
 .column {
+  gap: 16px;
   display: flex;
   flex-direction: column-reverse;
-  gap: 2px;
+  gap: inherit;
+  position: relative;
 
 }
 
 .cell {
-  border: 1px solid black;
-  width: 40px;
-  height: 40px;
+  gap: 24px;
+  position: relative;
+  border-radius: 100%;
+  box-shadow: 0 0 32px #00000099 inset;
+  width: 80px;
+  height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #00000033;
+}
+
+.piece {
+  width: inherit;
+  height: inherit;
+  border-radius: inherit;
+  background-size: 100%;
+  mix-blend-mode: multiply;
+  opacity: .5;
+}
+
+.cell:not(.empty) .piece {
+  background-image: url('./assets/piece.jpg');
+}
+
+.column:hover .cell:nth-child(1 of div.empty){
+  background-color: #00000055;
+}
+
+
+.cell:nth-child(1 of div.empty):hover{
+  cursor: pointer;
+  /* box-shadow: 0 0 24px 8px blue; */
+}
+
+
+#controls {
+  position: fixed;
+  z-index: 200;
+  top: 0;
+}
+
+.buttons {
+  display: flex;
+}
+
+/* 3D effect styling */
+#board::before,
+#board::after,
+.cell:last-of-type::before,
+.column:last-of-type .cell::after {
+  content: "";
+  position: absolute;
+  box-sizing: border-box;
+  background: inherit;
+  filter: brightness(60%);
+}
+
+#board::before,
+#board::after {
+  box-shadow: inherit;
+  background-image: url('./assets/wood.jpg');
+}
+
+.cell:last-of-type::before,
+.column:last-of-type .cell::after {
+  box-shadow: 0 0 4px black inset;
+}
+
+#board::before {
+  top: -14.5px;
+  left: 0;
+  height: 14.5px;
+  width: 100%;
+  transform: skewX(-60deg);
+  transform-origin: 100% 100%;
+  filter: brightness(50%);
+}
+#board::after {
+  top: 0;
+  right: -25px;
+  width: 25px;
+  height: 100%;
+  transform: skewY(-30deg);
+  transform-origin: 0% 100%;
+}
+
+.column:last-of-type .cell::after{
+  border-radius: 100%;
+  z-index: 20;
+  width: 14px;
+  height: 100%;
+  right: -44px;
+  transform: skewY(-30deg);
+  transform-origin: top left;
+}
+
+.cell:last-of-type::before{
+  width: 100%;
+  height: 8px;
+  top: -36px;
+  transform: skewX(-60deg);
+  transform-origin: bottom left;
+  border-radius: 100%;
+
 }
