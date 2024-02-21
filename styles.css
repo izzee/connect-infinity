@@ -37,7 +37,7 @@ body::before {
   height: 100%;
   left: 100%;
   background-image: url('./assets/clouds.jpg');
-  background-size: auto 33%;
+  background-size: auto 50%;
   animation: 120s infinite linear scroll;
 }
 
