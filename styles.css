@@ -47,6 +47,21 @@ body::after {
   mix-blend-mode: multiply;
 }
 
+h1 {
+  z-index: 2;
+  font-size: 32px;
+  line-height: 2;
+  color: #ffffff;
+  text-align: center;
+  font-family: "pf-pixelscript", sans-serif;
+  text-shadow: 1px 1px black, -1px 1px black, 1px -1px black, -1px -1px black;
+
+  @media (min-width: 640px) {
+    font-size: 56px;
+    line-height: 1.5;
+  }
+}
+
 .game-wrapper {
   z-index: 1;
   display: flex;
@@ -63,7 +78,7 @@ body::after {
   flex-direction: row;
   gap: 8px;
   background-image: url('./assets/wood.jpg');
-  box-shadow: 0 0 0 1px #00000066 inset, 24px 0 64px 24px white ;
+  box-shadow: 0 0 0 1px #00000066 inset, 24px 0 64px 24px white;
   opacity: .9;
   @media (min-width: 640px) {
     padding: 24px;
@@ -102,7 +117,7 @@ body::after {
   border-radius: inherit;
   background-size: 100%;
   mix-blend-mode: multiply;
-  opacity: .5;
+  opacity: 1;
 }
 
 .cell:not(.empty) .piece {
@@ -143,11 +158,13 @@ body::after {
   border: 1px solid black;
   background-color: white;
   cursor: pointer;
+  box-shadow: 1px 1px 0 .5px black;
 }
 
 .controls-window button:hover{
   color: white;
   background-color: black;
+  box-shadow: 2px 2px 0 1px black;
 }
 
 .top-bar {
@@ -170,6 +187,7 @@ body::after {
 .top-bar button {
   position: absolute;
   right: 8px;
+  font-weight: 700;
 }
 
 .controls-item {
@@ -181,11 +199,6 @@ body::after {
   border: 1px solid transparent;
 }
 
-.controls-item:hover {
-  border: 1px dashed black;
-  background-color: white;
-
-}
 
 .controls-item .buttons {
   display: flex;
@@ -196,14 +209,28 @@ body::after {
   text-align: center;
 }
 
+.controls-item b {
+  color: #bbb;
+}
+
+
+.controls-item:hover {
+  border: 1px dashed black;
+  background-color: white;
+}
+
+.controls-item:hover b {
+  color: black;
+}
+
 
 #game-info {
   display: flex;
   width: 100%;
   background: blue;
   background-size: 50%;
-  transition: background-color .25s;
-  filter: contrast(120%);
+  filter: saturate(.5);
+  box-shadow: 0 0 0 1px #00000066 inset, 0 0 100px 100px #ffffff22 inset;
 }
 
 #current-player {
@@ -229,9 +256,16 @@ body::after {
   background-color: white;
   color: black;
   border: 1px solid black;
+  opacity: .8;
+  box-shadow: 1px 1px 0 .5px black;
   @media (min-width: 640px) {
     margin: 16px;
   }
+}
+
+#game-info button:hover {
+  opacity: 1;
+  box-shadow: 2px 2px 0 1px black;
 }
 
 

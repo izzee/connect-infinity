@@ -5,7 +5,7 @@ const gameConfig = {
   boardRows: 6,
   winLength: 4,
   winner: null,
-  colors: ['blue', 'red', 'yellow', 'green', 'purple', 'orange', 'fuchsia', 'cyan', 'white', 'black']
+  colors: ['blue', 'red', 'yellow', 'green', 'mediumpurple', 'chocolate', 'deeppink', 'cyan', 'white', 'black']
 }
 
 function setupGame() {
