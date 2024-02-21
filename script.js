@@ -44,9 +44,9 @@ function activateControls(id, parameter) {
 function updateGameInfo(players, activePlayer, currentPlayerElement, gameInfoElement){
   const nextPlayer = players[gameConfig.turn % players.length]
   if (gameConfig.winner !== null) {
-    currentPlayerElement.innerHTML = `Player ${activePlayer} wins!`
+    currentPlayerElement.innerHTML = `Player ${activePlayer + 1} wins!`
   } else {
-    currentPlayerElement.innerHTML = `Player ${nextPlayer}'s turn`
+    currentPlayerElement.innerHTML = `Player ${nextPlayer + 1}'s turn`
     gameInfoElement.style.background = gameConfig.colors[nextPlayer]
   }
 }
