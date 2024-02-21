@@ -1,0 +1,13 @@
+@font-face {
+  font-family: 'EagleIII';
+  src: url('./assets/Web437_EagleSpCGA_Alt3-2y.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'EagleIII';
+  src: url('./assets/Web437_EagleSpCGA_Alt3.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}

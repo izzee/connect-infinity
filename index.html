@@ -3,51 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./fonts.css">
   <link rel="stylesheet" href="./styles.css">
   <title>Connect Infinity</title>
 </head>
 <body>
   <div class="game-wrapper">
     <div id="board" class="three-d"></div>
-    <div class="game-status three-d">
-      <!-- <p >Player 1</p> -->
+    <div id="game-info" class="three-d">
+      <button id="reset">New Game</button>
+        <div id="current-player"></div>
+      <button id="settings">Settings</button>
     </div>
   </div>
 
-  <!-- <div id="controls">
-    <div id="players-controls">
-      <p>Players:</p>
-      <div class="buttons">
-        <button class="decrease">-</button>
-        <p class="value">2</p>
-        <button class="increase">+</button>
+  <div id="controls" class="">
+    <div class="controls-window">
+      <div class="top-bar">
+        <p>Settings</p>
+        <button id="settings">x</button>
+      </div>
+      <div id="players-controls" class="controls-item">
+        <p>Players:</p>
+        <div class="buttons">
+          <button class="decrease">-</button>
+          <p class="value">2</p>
+          <button class="increase">+</button>
+        </div>
+      </div>
+      <div id="columns-controls" class="controls-item">
+        <p>Columns:</p>
+        <div class="buttons">
+          <button class="decrease">-</button>
+          <p class="value">7</p>
+          <button class="increase">+</button>
+        </div>
+      </div>
+      <div id="rows-controls" class="controls-item">
+        <p>Rows:</p>
+        <div class="buttons">
+          <button class="decrease">-</button>
+          <p class="value">6</p>
+          <button class="increase">+</button>
+        </div>
+      </div>
+      <div id="win-length-controls" class="controls-item">
+        <p>Win Length:</p>
+        <div class="buttons">
+          <button class="decrease">-</button>
+          <p class="value">4</p>
+          <button class="increase">+</button>
+        </div>
       </div>
     </div>
-    <div id="columns-controls">
-      <p>Columns:</p>
-      <div class="buttons">
-        <button class="decrease">-</button>
-        <p class="value">7</p>
-        <button class="increase">+</button>
-      </div>
-    </div>
-    <div id="rows-controls">
-      <p>Rows:</p>
-      <div class="buttons">
-        <button class="decrease">-</button>
-        <p class="value">6</p>
-        <button class="increase">+</button>
-      </div>
-    </div>
-    <div id="win-length-controls">
-      <p>Win Length:</p>
-      <div class="buttons">
-        <button class="decrease">-</button>
-        <p class="value">4</p>
-        <button class="increase">+</button>
-      </div>
-    </div>
-  </div> -->
+  </div>
   
   <script src="./script.js"></script>
 </body>

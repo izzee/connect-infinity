@@ -4,7 +4,8 @@ const gameConfig = {
   boardColumns: 7,
   boardRows: 6,
   winLength: 4,
-  winner: null
+  winner: null,
+  colors: ['blue', 'red', 'yellow', 'green', 'purple', 'orange', 'fuchsia', 'cyan', 'white', 'black']
 }
 
 function setupGame() {
@@ -16,10 +17,20 @@ function setupGame() {
 }
 
 function setupControls() {
+  const controls = document.querySelector('#controls')
   activateControls('#players-controls', 'playerCount')
   activateControls('#columns-controls', 'boardColumns')
   activateControls('#rows-controls', 'boardRows')
   activateControls('#win-length-controls', 'winLength')
+
+  const resetButton = document.querySelector('button#reset')
+  resetButton.addEventListener('click', setupGame)
+
+  const settingsButtons = document.querySelectorAll('button#settings')
+  settingsButtons.forEach(button => {
+    button.addEventListener('click', () => { controls.classList.toggle('visible') })
+  })
+    
 }
 
 function activateControls(id, parameter) {
@@ -30,9 +41,19 @@ function activateControls(id, parameter) {
   decrease.addEventListener('click', () => {updateValue(controls, parameter, -1)})
 }
 
+function updateGameInfo(players, activePlayer, currentPlayerElement, gameInfoElement){
+  const nextPlayer = players[gameConfig.turn % players.length]
+  if (gameConfig.winner !== null) {
+    currentPlayerElement.innerHTML = `Player ${activePlayer} wins!`
+  } else {
+    currentPlayerElement.innerHTML = `Player ${nextPlayer}'s turn`
+    gameInfoElement.style.background = gameConfig.colors[nextPlayer]
+  }
+}
+
 function updateValue(controls, parameter, amount) {
   const valueLabel = controls.querySelector('.value')
-  const newValue = Math.max(gameConfig[parameter] + amount, 2)
+  const newValue = Math.min(Math.max(gameConfig[parameter] + amount, 2), 10)
   gameConfig[parameter] = newValue
   valueLabel.innerHTML = gameConfig[parameter]
   setupGame()
@@ -54,6 +75,8 @@ function createElement(classNames) {
 
 function createBoard(board, players) {
   const boardElement = document.querySelector('#board')
+  const gameInfoElement = document.querySelector('#game-info')
+  const currentPlayerElement = gameInfoElement.querySelector('#current-player')
   boardElement.innerHTML = ""
   board.forEach((column, columnIndex) => {
     const columnElement = createElement(['column'])
@@ -62,20 +85,18 @@ function createBoard(board, players) {
       cellElement.dataset.column = columnIndex
       cellElement.dataset.row = rowIndex
       cellElement.dataset.status = 'empty'
-      const pieceElement =
       cellElement.appendChild( createElement(['piece']))
-
       columnElement.appendChild(cellElement)
     })
     columnElement.addEventListener('click', () => {
-      return handleRowClick(board, players, columnElement)
+      return handleRowClick(board, players, columnElement, currentPlayerElement, gameInfoElement)
     })
+    updateGameInfo(players, 0, currentPlayerElement, gameInfoElement)
     boardElement.appendChild(columnElement)
   })
 }
 
-function handleRowClick(board, players, columnElement) {
-  const colors = ['red', 'yellow', 'green']
+function handleRowClick(board, players, columnElement, currentPlayerElement, gameInfoElement) {
   const lowestUnfilledCell = columnElement.querySelector('[data-status="empty"]')  
   if (lowestUnfilledCell && gameConfig.winner === null) {
     const cellColumn = lowestUnfilledCell.dataset.column
@@ -84,9 +105,10 @@ function handleRowClick(board, players, columnElement) {
     lowestUnfilledCell.classList.remove('empty')
     lowestUnfilledCell.dataset.status = activePlayer
     board[cellColumn][cellRow] = activePlayer
-    lowestUnfilledCell.style.background = colors[activePlayer]
+    lowestUnfilledCell.style.background = gameConfig.colors[activePlayer]
     checkForWin(board, activePlayer, cellColumn, cellRow)
     gameConfig.turn++
+    updateGameInfo(players, activePlayer, currentPlayerElement, gameInfoElement)
   }
 }
 
