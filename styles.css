@@ -36,8 +36,8 @@ body::before {
   width: 200vw;
   left: 100%;
   background-image: url('./assets/clouds.jpg');
-  background-size: auto 50%;
-  animation: 240s infinite linear scroll;
+  background-size: auto 33%;
+  animation: 120s infinite linear scroll;
 }
 
 body::after {
@@ -54,7 +54,12 @@ h1 {
   color: #ffffff;
   text-align: center;
   font-family: "pf-pixelscript", sans-serif;
-  text-shadow: 1px 1px black, -1px 1px black, 1px -1px black, -1px -1px black;
+  text-shadow: 
+    1px 1px black, 
+    -1px 1px black,
+    1px -1px black, 
+    -1px -1px black,
+    3px 3px black;
 
   @media (min-width: 640px) {
     font-size: 56px;
