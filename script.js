@@ -43,8 +43,12 @@ function activateControls(id, parameter) {
 
 function updateGameInfo(players, activePlayer, currentPlayerElement, gameInfoElement){
   const nextPlayer = players[gameConfig.turn % players.length]
+  gameInfoElement.classList.remove('winner')
+
   if (gameConfig.winner !== null) {
     currentPlayerElement.innerHTML = `Player ${activePlayer + 1} wins!`
+    gameInfoElement.classList.add('winner')
+
   } else {
     currentPlayerElement.innerHTML = `Player ${nextPlayer + 1}'s turn`
     gameInfoElement.style.background = gameConfig.colors[nextPlayer]
@@ -89,10 +93,12 @@ function createBoard(board, players) {
       columnElement.appendChild(cellElement)
     })
     columnElement.addEventListener('click', () => {
+      updateGameInfo(players, 0, currentPlayerElement, gameInfoElement)
       return handleRowClick(board, players, columnElement, currentPlayerElement, gameInfoElement)
     })
-    updateGameInfo(players, 0, currentPlayerElement, gameInfoElement)
     boardElement.appendChild(columnElement)
+    updateGameInfo(players, 0, currentPlayerElement, gameInfoElement)
+
   })
 }
 
@@ -106,8 +112,8 @@ function handleRowClick(board, players, columnElement, currentPlayerElement, gam
     lowestUnfilledCell.dataset.status = activePlayer
     board[cellColumn][cellRow] = activePlayer
     lowestUnfilledCell.style.background = gameConfig.colors[activePlayer]
-    checkForWin(board, activePlayer, cellColumn, cellRow)
     gameConfig.turn++
+    checkForWin(board, activePlayer, cellColumn, cellRow)
     updateGameInfo(players, activePlayer, currentPlayerElement, gameInfoElement)
   }
 }
