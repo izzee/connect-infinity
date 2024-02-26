@@ -98,7 +98,6 @@ function createBoard(board, players) {
     })
     boardElement.appendChild(columnElement)
     updateGameInfo(players, 0, currentPlayerElement, gameInfoElement)
-
   })
 }
 
